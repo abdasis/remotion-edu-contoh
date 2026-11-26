@@ -13,6 +13,7 @@ membandingkan hasil kerja sendiri dengan contoh nyata.
 | `contoh/script.json` | Naskah 25 scene: label, narasi, baris teks, jenis visual, mood, sfx |
 | `contoh/theme.json` | Art direction project: palet, font, posisi header, warna subtitle |
 | `contoh/timeline.json` | Hasil generate: `start` dan `duration` tiap scene dari audio narasi |
+| `ebook/Video Edukasi Coding dengan Remotion dan Claude Code.pdf` | Ebook 63 halaman yang memakai video ini sebagai bahan bedah |
 
 ## Cara pakai
 
