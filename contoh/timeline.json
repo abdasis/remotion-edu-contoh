@@ -1,0 +1,777 @@
+{
+  "slug": "idempotency-payment",
+  "title": "Satu Pembayaran, Satu Efek",
+  "author": "Abdul Aziz · @abdasisdev",
+  "handle": "@abdasisdev",
+  "kicker": "BELAJAR SISTEM PEMBAYARAN",
+  "voice": {
+    "engine": "human-recording",
+    "refAudio": null,
+    "reciterId": null
+  },
+  "totalSeconds": 185.73,
+  "scenes": [
+    {
+      "id": "hook-intro",
+      "label": "PENGALAMAN PPOB",
+      "narration": "Halo teman-teman developer! Aku mau cerita sedikit tentang pengalaman waktu ikut mengembangkan aplikasi PPOB milik salah satu perusahaan.",
+      "lines": [
+        "Cerita dari",
+        "aplikasi PPOB"
+      ],
+      "accent": [
+        "PPOB"
+      ],
+      "mood": "calm",
+      "textSlot": "bottom",
+      "custom": "phoneIntro",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.24
+        },
+        {
+          "sound": "pop",
+          "at": 2.2,
+          "gain": 0.22
+        },
+        {
+          "sound": "tick",
+          "at": 4.6,
+          "gain": 0.18
+        }
+      ],
+      "start": 0.0,
+      "duration": 8.385
+    },
+    {
+      "id": "hook-test",
+      "label": "UJI TRANSAKSI",
+      "narration": "Waktu itu, owner melakukan pengujian transaksi.",
+      "lines": [
+        "Owner uji",
+        "transaksi langsung"
+      ],
+      "accent": [
+        "Owner"
+      ],
+      "mood": "calm",
+      "textSlot": "bottom",
+      "custom": "ownerTest",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.22
+        },
+        {
+          "sound": "tick",
+          "at": 1.6,
+          "gain": 0.18
+        }
+      ],
+      "start": 8.385,
+      "duration": 3.396
+    },
+    {
+      "id": "hook-double",
+      "label": "DUA KALI TEKAN",
+      "narration": "Dia mencoba menekan tombol pembayaran dua kali. Ternyata, transaksi yang diproses justru menghasilkan dua pembelian, padahal pembayaran hanya dilakukan satu kali.",
+      "lines": [
+        "Dua kali tekan,",
+        "dua pembelian"
+      ],
+      "accent": [
+        "dua pembelian"
+      ],
+      "mood": "tense",
+      "textSlot": "bottom",
+      "custom": "doubleTap",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.25,
+          "gain": 0.26
+        },
+        {
+          "sound": "pop",
+          "at": 3.2,
+          "gain": 0.24
+        },
+        {
+          "sound": "pop",
+          "at": 5.6,
+          "gain": 0.24
+        },
+        {
+          "sound": "thud",
+          "at": 8.0,
+          "gain": 0.32
+        }
+      ],
+      "start": 11.781,
+      "duration": 11.18
+    },
+    {
+      "id": "risk-scale",
+      "label": "SKALA PENGGUNA",
+      "narration": "Bayangkan kalau kasus seperti ini terjadi di aplikasi yang sudah digunakan ribuan pengguna.",
+      "lines": [
+        "Bayangkan",
+        "ribuan pengguna"
+      ],
+      "accent": [
+        "ribuan"
+      ],
+      "mood": "build",
+      "textSlot": "top",
+      "custom": "userGrid",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.24
+        },
+        {
+          "sound": "tick",
+          "at": 2.6,
+          "gain": 0.2
+        },
+        {
+          "sound": "tick",
+          "at": 3.4,
+          "gain": 0.18
+        }
+      ],
+      "start": 22.961,
+      "duration": 5.512
+    },
+    {
+      "id": "risk-loss",
+      "label": "DUA KELUAR, SATU MASUK",
+      "narration": "Perusahaan bisa mengalami kerugian karena sistem memberikan dua kali produk atau layanan, tetapi hanya menerima satu kali pembayaran.",
+      "lines": [
+        "Dua produk keluar,",
+        "satu pembayaran masuk"
+      ],
+      "accent": [
+        "satu pembayaran"
+      ],
+      "mood": "tense",
+      "textSlot": "bottom",
+      "custom": "onePayTwoGoods",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.25,
+          "gain": 0.24
+        },
+        {
+          "sound": "thud",
+          "at": 3.6,
+          "gain": 0.3
+        },
+        {
+          "sound": "tick",
+          "at": 5.6,
+          "gain": 0.18
+        }
+      ],
+      "start": 28.473,
+      "duration": 8.829
+    },
+    {
+      "id": "concept",
+      "label": "ISTILAHNYA",
+      "narration": "Dari pengalaman itu, ada satu hal penting yang harus diperhatikan ketika membangun sistem transaksi, yaitu Idempotency.",
+      "lines": [
+        "Namanya:",
+        "Idempotency"
+      ],
+      "accent": [
+        "Idempotency"
+      ],
+      "mood": "calm",
+      "textSlot": "bottom",
+      "custom": "definition",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.24
+        },
+        {
+          "sound": "chime",
+          "at": 2.8,
+          "gain": 0.26
+        }
+      ],
+      "start": 37.302,
+      "duration": 7.889
+    },
+    {
+      "id": "balance-question",
+      "label": "SKENARIO SALDO",
+      "narration": "Pernah nggak membayangkan saldo user terpotong dua kali hanya karena koneksi internet yang lambat?",
+      "lines": [
+        "Saldo terpotong",
+        "dua kali karena koneksi lambat"
+      ],
+      "accent": [
+        "dua kali"
+      ],
+      "mood": "build",
+      "textSlot": "bottom",
+      "custom": "slowSignal",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.24
+        },
+        {
+          "sound": "riser",
+          "at": 3.0,
+          "gain": 0.26
+        }
+      ],
+      "start": 45.191,
+      "duration": 6.348
+    },
+    {
+      "id": "balance-charge",
+      "label": "SERVER BERHASIL",
+      "narration": "Misalnya, user menekan tombol bayar. Server sebenarnya berhasil memproses transaksi dan memotong saldo.",
+      "lines": [
+        "Server berhasil",
+        "potong saldo"
+      ],
+      "accent": [
+        "berhasil"
+      ],
+      "mood": "calm",
+      "textSlot": "bottom",
+      "custom": "balanceCharge",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.22
+        },
+        {
+          "sound": "tick",
+          "at": 2.4,
+          "gain": 0.2
+        },
+        {
+          "sound": "chime",
+          "at": 4.2,
+          "gain": 0.24
+        }
+      ],
+      "start": 51.539,
+      "duration": 7.314
+    },
+    {
+      "id": "balance-lost",
+      "label": "RESPONS HILANG",
+      "narration": "Namun, karena koneksi internet terputus, aplikasi tidak menerima respons dari server.",
+      "lines": [
+        "Respons hilang",
+        "di tengah jalan"
+      ],
+      "accent": [
+        "hilang"
+      ],
+      "mood": "tense",
+      "textSlot": "bottom",
+      "custom": "responseLost",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.24
+        },
+        {
+          "sound": "thud",
+          "at": 2.6,
+          "gain": 0.3
+        }
+      ],
+      "start": 58.853,
+      "duration": 5.669
+    },
+    {
+      "id": "balance-retry",
+      "label": "USER MENGULANG",
+      "narration": "User mengira transaksi gagal. Akhirnya, dia menekan tombol bayar lagi.",
+      "lines": [
+        "User mengira gagal,",
+        "tekan bayar lagi"
+      ],
+      "accent": [
+        "tekan bayar lagi"
+      ],
+      "mood": "build",
+      "textSlot": "bottom",
+      "custom": "retryTap",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.22
+        },
+        {
+          "sound": "pop",
+          "at": 2.2,
+          "gain": 0.22
+        }
+      ],
+      "start": 64.522,
+      "duration": 5.277
+    },
+    {
+      "id": "balance-duplicate",
+      "label": "POTONG DUA KALI",
+      "narration": "Kalau sistem tidak dirancang dengan benar, server bisa menganggapnya sebagai transaksi baru dan kembali memotong saldo user.",
+      "lines": [
+        "Saldo terpotong",
+        "untuk kedua kalinya"
+      ],
+      "accent": [
+        "kedua kalinya"
+      ],
+      "mood": "tense",
+      "textSlot": "bottom",
+      "custom": "doubleCharge",
+      "sfx": [
+        {
+          "sound": "riser",
+          "at": 0.3,
+          "gain": 0.28
+        },
+        {
+          "sound": "thud",
+          "at": 3.4,
+          "gain": 0.34
+        }
+      ],
+      "start": 69.799,
+      "duration": 7.497
+    },
+    {
+      "id": "solution",
+      "label": "SOLUSINYA",
+      "narration": "Nah, salah satu solusi untuk mengatasi masalah ini adalah menggunakan pola yang disebut Idempotency Key.",
+      "lines": [
+        "Solusinya:",
+        "Idempotency Key"
+      ],
+      "accent": [
+        "Idempotency Key"
+      ],
+      "mood": "resolve",
+      "textSlot": "bottom",
+      "custom": "keyIntro",
+      "sfx": [
+        {
+          "sound": "chime",
+          "at": 0.3,
+          "gain": 0.28
+        },
+        {
+          "sound": "pop",
+          "at": 1.8,
+          "gain": 0.22
+        }
+      ],
+      "start": 77.296,
+      "duration": 6.844
+    },
+    {
+      "id": "stripe",
+      "label": "STANDAR INDUSTRI",
+      "narration": "Pola ini juga digunakan oleh payment provider seperti Stripe.",
+      "lines": [
+        "Dipakai juga oleh",
+        "payment provider besar"
+      ],
+      "accent": [
+        "payment provider"
+      ],
+      "mood": "calm",
+      "textSlot": "bottom",
+      "custom": "providerBadge",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.2
+        },
+        {
+          "sound": "pop",
+          "at": 1.4,
+          "gain": 0.2
+        }
+      ],
+      "start": 84.14,
+      "duration": 4.232
+    },
+    {
+      "id": "how",
+      "label": "CARA KERJANYA",
+      "narration": "Lalu, bagaimana cara kerjanya?",
+      "lines": [
+        "Bagaimana",
+        "cara kerjanya?"
+      ],
+      "accent": [
+        "cara kerjanya"
+      ],
+      "mood": "build",
+      "textSlot": "top",
+      "custom": "threeSteps",
+      "sfx": [
+        {
+          "sound": "tick",
+          "at": 0.2,
+          "gain": 0.2
+        }
+      ],
+      "start": 88.372,
+      "duration": 2.299
+    },
+    {
+      "id": "step-key",
+      "label": "LANGKAH 1 · KEY",
+      "narration": "Pertama, setiap kali user memulai transaksi, frontend membuat sebuah ID unik menggunakan UUID. ID ini dikirimkan ke backend melalui header Idempotency-Key.",
+      "lines": [
+        "Frontend kirim",
+        "satu UUID unik"
+      ],
+      "accent": [
+        "UUID"
+      ],
+      "mood": "build",
+      "textSlot": "bottom",
+      "custom": "uuidHeader",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.26
+        },
+        {
+          "sound": "tick",
+          "at": 2.8,
+          "gain": 0.2
+        },
+        {
+          "sound": "type",
+          "at": 4.2,
+          "gain": 0.22
+        },
+        {
+          "sound": "pop",
+          "at": 7.0,
+          "gain": 0.22
+        }
+      ],
+      "start": 90.671,
+      "duration": 11.52
+    },
+    {
+      "id": "step-unique",
+      "label": "LANGKAH 2 · UNIQUE",
+      "narration": "Kedua, backend menyimpan key tersebut di database dengan constraint UNIQUE.",
+      "lines": [
+        "Simpan key",
+        "dengan UNIQUE"
+      ],
+      "accent": [
+        "UNIQUE"
+      ],
+      "mood": "calm",
+      "textSlot": "bottom",
+      "custom": "uniqueRow",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.24
+        },
+        {
+          "sound": "pop",
+          "at": 2.4,
+          "gain": 0.22
+        }
+      ],
+      "start": 102.191,
+      "duration": 6.139
+    },
+    {
+      "id": "step-atomic",
+      "label": "ATOMIC INSERT",
+      "narration": "Kita bisa menggunakan operasi atomic insert dengan mekanisme ON CONFLICT DO NOTHING.",
+      "lines": [
+        "Atomic insert,",
+        "ON CONFLICT DO NOTHING"
+      ],
+      "accent": [
+        "ON CONFLICT"
+      ],
+      "mood": "build",
+      "textSlot": "bottom",
+      "custom": "atomicInsert",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.22
+        },
+        {
+          "sound": "tick",
+          "at": 2.2,
+          "gain": 0.2
+        },
+        {
+          "sound": "pop",
+          "at": 3.2,
+          "gain": 0.2
+        }
+      ],
+      "start": 108.33,
+      "duration": 5.146
+    },
+    {
+      "id": "step-race",
+      "label": "HANYA SATU MENANG",
+      "narration": "Tujuannya agar ketika dua request dengan key yang sama masuk secara bersamaan, hanya satu request yang berhasil mendapatkan hak untuk memproses transaksi.",
+      "lines": [
+        "Dua request datang,",
+        "hanya satu menang"
+      ],
+      "accent": [
+        "satu menang"
+      ],
+      "mood": "tense",
+      "textSlot": "bottom",
+      "custom": "requestRace",
+      "sfx": [
+        {
+          "sound": "riser",
+          "at": 0.3,
+          "gain": 0.26
+        },
+        {
+          "sound": "pop",
+          "at": 3.2,
+          "gain": 0.22
+        },
+        {
+          "sound": "thud",
+          "at": 6.2,
+          "gain": 0.3
+        }
+      ],
+      "start": 113.476,
+      "duration": 10.109
+    },
+    {
+      "id": "step-save",
+      "label": "LANGKAH 3 · SIMPAN",
+      "narration": "Ketiga, setelah transaksi selesai, backend menyimpan status, hasil transaksi, dan responsnya ke database.",
+      "lines": [
+        "Status, hasil,",
+        "respons disimpan ke database"
+      ],
+      "accent": [
+        "disimpan"
+      ],
+      "mood": "resolve",
+      "textSlot": "bottom",
+      "custom": "saveResult",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.24
+        },
+        {
+          "sound": "tick",
+          "at": 2.2,
+          "gain": 0.18
+        },
+        {
+          "sound": "chime",
+          "at": 4.8,
+          "gain": 0.24
+        }
+      ],
+      "start": 123.585,
+      "duration": 7.941
+    },
+    {
+      "id": "step-replay",
+      "label": "REQUEST ULANG",
+      "narration": "Ketika request dengan key yang sama dikirim ulang, backend tidak perlu memproses pembayaran dari awal. Cukup mengembalikan respons transaksi sebelumnya tanpa memotong saldo lagi.",
+      "lines": [
+        "Key sama?",
+        "Kembalikan respons lama"
+      ],
+      "accent": [
+        "respons lama"
+      ],
+      "mood": "resolve",
+      "textSlot": "bottom",
+      "custom": "replayResponse",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.24
+        },
+        {
+          "sound": "pop",
+          "at": 3.0,
+          "gain": 0.22
+        },
+        {
+          "sound": "chime",
+          "at": 6.4,
+          "gain": 0.26
+        }
+      ],
+      "start": 131.526,
+      "duration": 10.632
+    },
+    {
+      "id": "step-processing",
+      "label": "MASIH DIPROSES",
+      "narration": "Perlu diingat, request yang masuk ketika transaksi pertama masih diproses juga harus ditangani dengan status processing, bukan dianggap sebagai transaksi baru.",
+      "lines": [
+        "Masih diproses?",
+        "Jawab: processing"
+      ],
+      "accent": [
+        "processing"
+      ],
+      "mood": "build",
+      "textSlot": "bottom",
+      "custom": "processingState",
+      "sfx": [
+        {
+          "sound": "riser",
+          "at": 0.3,
+          "gain": 0.26
+        },
+        {
+          "sound": "tick",
+          "at": 3.6,
+          "gain": 0.2
+        },
+        {
+          "sound": "pop",
+          "at": 6.4,
+          "gain": 0.2
+        }
+      ],
+      "start": 142.158,
+      "duration": 10.318
+    },
+    {
+      "id": "conclusion",
+      "label": "BUKAN SOAL TOMBOL",
+      "narration": "Jadi, idempotency bukan sekadar mencegah tombol pembayaran diklik berkali-kali. Ini tentang memastikan satu operasi bisnis tidak menghasilkan efek transaksi berulang meskipun request dikirim berkali-kali.",
+      "lines": [
+        "Bukan soal tombol,",
+        "tapi satu efek bisnis"
+      ],
+      "accent": [
+        "satu efek"
+      ],
+      "mood": "calm",
+      "textSlot": "bottom",
+      "custom": "operationIdentity",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.24
+        },
+        {
+          "sound": "tick",
+          "at": 4.4,
+          "gain": 0.18
+        },
+        {
+          "sound": "chime",
+          "at": 7.8,
+          "gain": 0.24
+        }
+      ],
+      "start": 152.476,
+      "duration": 12.408
+    },
+    {
+      "id": "rule",
+      "label": "ATURANNYA",
+      "narration": "Ingat, dalam sistem keuangan, satu request bisa datang berkali-kali, tetapi efek transaksinya harus tetap satu kali.",
+      "lines": [
+        "Request berulang,",
+        "efeknya tetap satu"
+      ],
+      "accent": [
+        "tetap satu"
+      ],
+      "mood": "tense",
+      "textSlot": "top",
+      "custom": "oneEffect",
+      "sfx": [
+        {
+          "sound": "whoosh",
+          "at": 0.2,
+          "gain": 0.24
+        },
+        {
+          "sound": "thud",
+          "at": 4.2,
+          "gain": 0.28
+        }
+      ],
+      "start": 164.884,
+      "duration": 8.986
+    },
+    {
+      "id": "outro",
+      "label": "SIMPAN UNTUK NANTI",
+      "narration": "Simpan video ini sebagai referensi saat membangun sistem pembayaran yang aman dan andal. Saya Abdul Aziz dari Abede Asis Dev. Sampai jumpa di pembahasan teknologi berikutnya!",
+      "lines": [
+        "Simpan video ini",
+        "Abdul Aziz"
+      ],
+      "accent": [
+        "Abdul Aziz"
+      ],
+      "mood": "resolve",
+      "textSlot": "bottom",
+      "custom": "signOff",
+      "sfx": [
+        {
+          "sound": "chime",
+          "at": 0.4,
+          "gain": 0.28
+        },
+        {
+          "sound": "pop",
+          "at": 4.2,
+          "gain": 0.2
+        }
+      ],
+      "start": 173.87,
+      "duration": 11.86
+    }
+  ],
+  "subtitles": []
+}
